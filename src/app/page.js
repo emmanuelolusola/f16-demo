@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Head from "next/head";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { events } from "@/queries/auth";
@@ -104,6 +105,21 @@ export default function Home() {
   const sortedEvents = sortedEventsList(eventsList);
   return (
     <main className="w-full h-full py-[10px] lg:py-[20px]">
+      <Head>
+        <title>Friends of 16</title>
+        <meta
+          name="description"
+          content="16/16 is a serene space for intimate experiences designed to attract and serve creatives"
+        />
+        <meta property="og:title" content="Friends of 16" />
+        <meta
+          property="og:description"
+          content="16/16 is a serene space for intimate experiences designed to attract and serve creatives"
+        />
+        <meta property="og:image" content="/SEOImage.png" />
+        <meta property="og:url" content="https://f16-next-demo.vercel.app/" />
+        <meta property="og:type" content="website" />
+      </Head>
       <div className="w-full fixed top-0 flex justify-between items-center py-[15px] lg:pb-0 lg:pt-[30px] px-[24px] lg:px-[96px] bg-white z-50">
         <p className="font-bold text-[18px] lg:text-[24px]">16/16</p>
         <Link href="/menu" className="font-normal text-[18px] lg:text-[24px]">
