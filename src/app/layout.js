@@ -3,6 +3,23 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+export const metadata = {
+  title: "Friends of 16",
+  description:
+    "16/16 is a serene space for intimate experiences designed to attract and serve creatives",
+  openGraph: {
+    type: "website",
+    url: "https://f16-next-demo.vercel.app",
+    image: {
+      url: "https://f16-next-demo.vercel.app/SEOImage.png",
+      width: 1200,
+      height: 628,
+      alt: "logo",
+    },
+    site_name: "Friends of 16",
+  },
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
