@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
-import "./globals.css";
+import Head from "next/head";
+import "../styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,8 +23,25 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <>
+      <Head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+        <meta property="og:type" content={metadata.openGraph.type} />
+        <meta property="og:url" content={metadata.openGraph.url} />
+        <meta property="og:image" content={metadata.openGraph.image.url} />
+        <meta
+          property="og:image:width"
+          content={metadata.openGraph.image.width}
+        />
+        <meta
+          property="og:image:height"
+          content={metadata.openGraph.image.height}
+        />
+        <meta property="og:image:alt" content={metadata.openGraph.image.alt} />
+        <meta property="og:site_name" content={metadata.openGraph.site_name} />
+      </Head>
       <body className={inter.className}>{children}</body>
-    </html>
+    </>
   );
 }
