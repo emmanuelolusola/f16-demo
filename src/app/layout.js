@@ -12,7 +12,7 @@ export const metadata = {
     type: "website",
     url: "https://f16-next-demo.vercel.app",
     image: {
-      url: "https://f16-next-demo.vercel.app/SEOImage.png",
+      path: "/SEOImage.png",
       width: 1200,
       height: 628,
       alt: "logo",
@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
         <meta name="description" content={metadata.description} />
         <meta property="og:type" content={metadata.openGraph.type} />
         <meta property="og:url" content={metadata.openGraph.url} />
-        <meta property="og:image" content={metadata.openGraph.image.url} />
+        <meta property="og:image" content={metadata.openGraph.image.path} />
         <meta
           property="og:image:width"
           content={metadata.openGraph.image.width}
