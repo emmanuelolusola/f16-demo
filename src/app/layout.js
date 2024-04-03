@@ -1,46 +1,16 @@
 import { Inter } from "next/font/google";
-import Head from "next/head";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+export const metadata = {
+  title: "Friends of 16",
+  description: "lorem ipsum",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Head>
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Friends of 16</title>
-        <meta name="title" content="Friends of 16" />
-        <meta
-          name="description"
-          content="16/16 is a serene space for intimate experiences designed to attract and serve creatives"
-        />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://f16-demo.vercel.app/" />
-        <meta property="og:title" content="Friends of 16" />
-        <meta
-          property="og:description"
-          content="16/16 is a serene space for intimate experiences designed to attract and serve creatives"
-        />
-        <meta
-          property="og:image"
-          content="https://f16-demo.vercel.app/SEOImage.png"
-        />
-
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://f16-demo.vercel.app/" />
-        <meta property="twitter:title" content="Friends of 16" />
-        <meta
-          property="twitter:description"
-          content="16/16 is a serene space for intimate experiences designed to attract and serve creatives"
-        />
-        <meta
-          property="twitter:image"
-          content="https://f16-demo.vercel.app/SEOImage.png"
-        />
-      </Head>
       <body className={inter.className}>{children}</body>
     </html>
   );
