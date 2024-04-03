@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import Head from "next/head";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { events } from "@/queries/auth";
@@ -104,138 +103,99 @@ export default function Home() {
 
   const sortedEvents = sortedEventsList(eventsList);
   return (
-    <>
-      <Head>
-        <title>Friends of 16</title>
-        <meta name="title" content="Friends of 16" />
-        <meta
-          name="description"
-          content="16/16 is a serene space for intimate experiences designed to attract and serve creatives"
+    <main className="w-full h-full py-[10px] lg:py-[20px]">
+      <div className="w-full fixed top-0 flex justify-between items-center py-[15px] lg:pb-0 lg:pt-[30px] px-[24px] lg:px-[96px] bg-white z-50">
+        <p className="font-bold text-[18px] lg:text-[24px]">16/16</p>
+        <Link href="/menu" className="font-normal text-[18px] lg:text-[24px]">
+          Menu
+        </Link>
+      </div>
+      <div className="w-full h-[100dvh] py-[50px] lg:py-[100px] flex flex-col justify-end items-center gap-[22dvh] lg:gap-[18vh]">
+        <Image
+          src="/gif.gif"
+          alt=""
+          width={100}
+          height={100}
+          priority={true}
+          unoptimized={false}
+          className="w-[100px] lg:w-[150px]"
         />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://f16-next-demo.vercel.app/" />
-        <meta property="og:title" content="Friends of 16" />
-        <meta
-          property="og:description"
-          content="16/16 is a serene space for intimate experiences designed to attract and serve creatives"
-        />
-        <meta
-          property="og:image"
-          content="https://f16-next-demo.vercel.app/SEOImage.png"
-        />
-
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta
-          property="twitter:url"
-          content="https://f16-next-demo.vercel.app/"
-        />
-        <meta property="twitter:title" content="Friends of 16" />
-        <meta
-          property="twitter:description"
-          content="16/16 is a serene space for intimate experiences designed to attract and serve creatives"
-        />
-        <meta
-          property="twitter:image"
-          content="https://f16-next-demo.vercel.app/SEOImage.png"
-        />
-      </Head>
-      <main className="w-full h-full py-[10px] lg:py-[20px]">
-        <div className="w-full fixed top-0 flex justify-between items-center py-[15px] lg:pb-0 lg:pt-[30px] px-[24px] lg:px-[96px] bg-white z-50">
-          <p className="font-bold text-[18px] lg:text-[24px]">16/16</p>
-          <Link href="/menu" className="font-normal text-[18px] lg:text-[24px]">
-            Menu
-          </Link>
-        </div>
-        <div className="w-full h-[100dvh] py-[50px] lg:py-[100px] flex flex-col justify-end items-center gap-[22dvh] lg:gap-[18vh]">
+        <div className="flex flex-col items-center gap-10 lg:gap-20">
+          <p className="text-[18px] lg:text-[24px] text-center px-[32px]">
+            {" "}
+            16/16 is a serene space for
+            <br /> intimate experiences designed
+            <br /> to attract and serve creatives
+          </p>
           <Image
-            src="/gif.gif"
+            src="/arrow.svg"
             alt=""
-            width={100}
-            height={100}
+            width={20}
+            height={20}
             priority={true}
-            unoptimized={false}
-            className="w-[100px] lg:w-[150px]"
           />
-          <div className="flex flex-col items-center gap-10 lg:gap-20">
-            <p className="text-[18px] lg:text-[24px] text-center px-[32px]">
-              {" "}
-              16/16 is a serene space for
-              <br /> intimate experiences designed
-              <br /> to attract and serve creatives
-            </p>
-            <Image
-              src="/arrow.svg"
+        </div>
+      </div>
+      <div className="bg-white sticky justify-center w-full top-4 lg:top-10 pt-[10px] lg:pt-[5px] px-[24px] lg:px-[96px] z-40">
+        <div className="w-full flex justify-between items-center mt-[40px]">
+          <p className="font-bold text-[18px] lg:text-[24px]">Calendar</p>
+          <p className="font-normal text-[18px] lg:text-[24px]">
+            {currentTitle}
+          </p>
+        </div>
+        <hr className="mt-[20px] opacity-30" />
+      </div>
+
+      {loading ? (
+        <div className="w-full text-center p-[40px]">
+          <div className="font-normal text-[18px] lg:text-[24px]">
+            Loading...
+          </div>
+        </div>
+      ) : eventsList.length === 0 ? (
+        <div className="w-full text-center p-[40px]">
+          <div className="font-normal text-[18px] lg:text-[24px]">
+            No events available
+          </div>
+        </div>
+      ) : (
+        sortedEvents.map((event, index) => (
+          <div
+            className="mt-[30px] lg:mt-[60px] lg:w-[600px] px-[24px] lg:px-0 flex flex-col gap-4 lg:gap-4 pb-[20px] lg:pb-0 lg:mx-auto"
+            key={index}
+            id={event.ID}
+          >
+            <p className="font-bold text-[18px] lg:text-[24px]">{event.Name}</p>
+            <img
+              src={event.Poster[0].url}
               alt=""
-              width={20}
-              height={20}
-              priority={true}
+              style={{ position: "relative" }}
+              fill="true"
+              priority="true"
             />
-          </div>
-        </div>
-        <div className="bg-white sticky justify-center w-full top-4 lg:top-10 pt-[10px] lg:pt-[5px] px-[24px] lg:px-[96px] z-40">
-          <div className="w-full flex justify-between items-center mt-[40px]">
-            <p className="font-bold text-[18px] lg:text-[24px]">Calendar</p>
-            <p className="font-normal text-[18px] lg:text-[24px]">
-              {currentTitle}
-            </p>
-          </div>
-          <hr className="mt-[20px] opacity-30" />
-        </div>
 
-        {loading ? (
-          <div className="w-full text-center p-[40px]">
-            <div className="font-normal text-[18px] lg:text-[24px]">
-              Loading...
-            </div>
+            {currentMoment.isSameOrBefore(event.EndDate)}
+            {event.RSVP === true &&
+            currentMoment.isSameOrBefore(event.EndDate) ? (
+              <Link
+                href="/menu"
+                className="w-full h-[66px] border border-[#0a0a0a] bg-white text-[#0A0A0A] text-[18px] lg:text-[24px] font-bold flex justify-center items-center"
+              >
+                RSVP
+              </Link>
+            ) : currentMoment.isAfter(event.EndDate) ? (
+              <div className="w-full h-[66px] border border-[#FF3131] text-[#FF3131] text-[18px] lg:text-[24px] font-bold flex justify-center items-center">
+                Closed
+              </div>
+            ) : (
+              <div className="w-full h-[66px] border border-[#e1e1e1] text-[#bebebe] text-[18px] lg:text-[24px] font-bold flex justify-center items-center">
+                Sold out
+              </div>
+            )}
           </div>
-        ) : eventsList.length === 0 ? (
-          <div className="w-full text-center p-[40px]">
-            <div className="font-normal text-[18px] lg:text-[24px]">
-              No events available
-            </div>
-          </div>
-        ) : (
-          sortedEvents.map((event, index) => (
-            <div
-              className="mt-[30px] lg:mt-[60px] lg:w-[600px] px-[24px] lg:px-0 flex flex-col gap-4 lg:gap-4 pb-[20px] lg:pb-0 lg:mx-auto"
-              key={index}
-              id={event.ID}
-            >
-              <p className="font-bold text-[18px] lg:text-[24px]">
-                {event.Name}
-              </p>
-              <img
-                src={event.Poster[0].url}
-                alt=""
-                style={{ position: "relative" }}
-                fill="true"
-                priority="true"
-              />
-
-              {currentMoment.isSameOrBefore(event.EndDate)}
-              {event.RSVP === true &&
-              currentMoment.isSameOrBefore(event.EndDate) ? (
-                <Link
-                  href="/menu"
-                  className="w-full h-[66px] border border-[#0a0a0a] bg-white text-[#0A0A0A] text-[18px] lg:text-[24px] font-bold flex justify-center items-center"
-                >
-                  RSVP
-                </Link>
-              ) : currentMoment.isAfter(event.EndDate) ? (
-                <div className="w-full h-[66px] border border-[#FF3131] text-[#FF3131] text-[18px] lg:text-[24px] font-bold flex justify-center items-center">
-                  Closed
-                </div>
-              ) : (
-                <div className="w-full h-[66px] border border-[#e1e1e1] text-[#bebebe] text-[18px] lg:text-[24px] font-bold flex justify-center items-center">
-                  Sold out
-                </div>
-              )}
-            </div>
-          ))
-        )}
-      </main>
-    </>
+        ))
+      )}
+    </main>
   );
 }
 
