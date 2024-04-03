@@ -1,13 +1,11 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
         <title>Friends of 16</title>
+        <link rel="icon" type="image/svg" href="Logo.svg" sizes="16x16" />
         <meta name="title" content="Friends of 16" />
         <meta
           name="description"
@@ -38,7 +36,7 @@ export default function RootLayout({ children }) {
           content="https://f16-demo.vercel.app/SEOImage.png"
         />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }
