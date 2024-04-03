@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
         />
 
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://f16-next-demo.vercel.app/" />
+        <meta property="og:url" content="https://f16-demo.vercel.app/" />
         <meta property="og:title" content="Friends of 16" />
         <meta
           property="og:description"
@@ -24,14 +24,11 @@ export default function RootLayout({ children }) {
         />
         <meta
           property="og:image"
-          content="https://f16-next-demo.vercel.app/SEOImage.png"
+          content="https://f16-demo.vercel.app/SEOImage.png"
         />
 
         <meta property="twitter:card" content="summary_large_image" />
-        <meta
-          property="twitter:url"
-          content="https://f16-next-demo.vercel.app/"
-        />
+        <meta property="twitter:url" content="https://f16-demo.vercel.app/" />
         <meta property="twitter:title" content="Friends of 16" />
         <meta
           property="twitter:description"
@@ -39,7 +36,7 @@ export default function RootLayout({ children }) {
         />
         <meta
           property="twitter:image"
-          content="https://f16-next-demo.vercel.app/SEOImage.png"
+          content="https://f16-demo.vercel.app/SEOImage.png"
         />
       </Head>
       <body className={inter.className}>{children}</body>
