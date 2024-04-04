@@ -214,7 +214,6 @@ export default function Event(props) {
         <title>{event.Name}</title>
         <meta name="title" content={event.Name} />
         <meta name="description" content={event.About} />
-
         <meta property="og:type" content="website" />
         <meta
           property="og:url"
@@ -222,8 +221,10 @@ export default function Event(props) {
         />
         <meta property="og:title" content={event.Name} />
         <meta property="og:description" content={event.About} />
-        <meta property="og:image" content={event.Poster[0].url} />
-
+        <meta property="og:image" content={event.Poster[0].url} />{" "}
+        <meta property="og:image:secure\_url" content={event.Poster[0].url} />
+        <meta property="og:image:width" content="1200" />{" "}
+        <meta property="og:image:height" content="630" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta
           property="twitter:url"
@@ -232,6 +233,12 @@ export default function Event(props) {
         <meta property="twitter:title" content={event.Name} />
         <meta property="twitter:description" content={event.About} />
         <meta property="twitter:image" content={event.Poster[0].url} />
+        <meta
+          property="twitter:image:secure\_url"
+          content={event.Poster[0].url}
+        />
+        <meta property="twitter:image:width" content="1200" />{" "}
+        <meta property="twitter:image:height" content="630" />
       </head>
       <div className="bg-white fixed justify w-full top-0 px-[24px] lg:px-[96px] pt-[10px] lg:pt-[30px] z-10">
         <div className="w-full flex justify-between items-center mt-[15px]">
