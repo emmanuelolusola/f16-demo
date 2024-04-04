@@ -242,12 +242,9 @@ export default function Event(props) {
       </head>
       <div className="bg-white fixed justify w-full top-0 px-[24px] lg:px-[96px] pt-[10px] lg:pt-[30px] z-10">
         <div className="w-full flex justify-between items-center mt-[15px]">
-          <p
-            className="font-normal text-[18px] lg:text-[24px]"
-            onClick={() => navigate(`/`)}
-          >
+          <Link className="font-normal text-[18px] lg:text-[24px]" href="/">
             Back
-          </p>
+          </Link>
           <Link href="/menu" className="font-normal text-[18px] lg:text-[24px]">
             Menu
           </Link>
