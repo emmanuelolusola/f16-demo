@@ -128,7 +128,7 @@ export default function Home() {
             <br /> to attract and serve creatives
           </p>
           <Image
-            src="/arrow.svg"
+            src="/chevron-down.svg"
             alt=""
             width={20}
             height={20}
@@ -175,15 +175,14 @@ export default function Home() {
             />
 
             {currentMoment.isSameOrBefore(event.EndDate)}
-            {event.RSVP === true &&
-            currentMoment.isSameOrBefore(event.EndDate) ? (
+            {event.RSVP === true && currentMoment.isAfter(event.EndDate) ? (
               <Link
-                href="/menu"
+                href={`/event/${event.ID}`}
                 className="w-full h-[66px] border border-[#0a0a0a] bg-white text-[#0A0A0A] text-[18px] lg:text-[24px] font-bold flex justify-center items-center"
               >
                 RSVP
               </Link>
-            ) : currentMoment.isAfter(event.EndDate) ? (
+            ) : currentMoment.isSameOrBefore(event.EndDate) ? (
               <div className="w-full h-[66px] border border-[#FF3131] text-[#FF3131] text-[18px] lg:text-[24px] font-bold flex justify-center items-center">
                 Closed
               </div>
