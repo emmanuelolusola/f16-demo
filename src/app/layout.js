@@ -4,7 +4,7 @@ import "./globals.css";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      {/* <head>
+      <head>
         <title>Friends of 16</title>
         <link rel="icon" type="image/svg" href="Logo.svg" sizes="16x16" />
         <meta name="title" content="Friends of 16" />
@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
           property="twitter:image"
           content="https://f16-demo.vercel.app/SEOImage.png"
         />
-      </head> */}
+      </head>
       <body>{children}</body>
     </html>
   );
