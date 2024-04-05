@@ -210,6 +210,28 @@ export default function Event(props) {
   };
   return (
     <div className="w-full h-full py-[10px] lg:py-[20px]">
+      <head>
+        <title>{event.Name}</title>
+        <link rel="icon" type="image/svg" href="Logo.svg" sizes="16x16" />
+        <meta name="title" content={event.Name} />
+        <meta name="description" content={event.About} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://f16-demo.vercel.app/" />
+        <meta property="og:title" content={event.Name} />
+        <meta property="og:description" content={event.About} />
+        <meta property="og:image" content={event.Poster[0].url} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://f16-demo.vercel.app/" />
+        <meta property="twitter:title" content={event.Name} />
+        <meta property="twitter:description" content={event.About} />
+        <meta property="twitter:image" content={event.Poster[0].url} />
+        <meta property="twitter:image:width" content="1200" />
+        <meta property="twitter:image:height" content="630" />
+      </head>
       <div className="bg-white fixed justify w-full top-0 px-[24px] lg:px-[96px] pt-[10px] lg:pt-[30px] z-10">
         <div className="w-full flex justify-between items-center mt-[15px]">
           <Link className="font-normal text-[18px] lg:text-[24px]" href="/">
