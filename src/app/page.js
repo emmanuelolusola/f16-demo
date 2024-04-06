@@ -104,78 +104,9 @@ export default function Home() {
 
   const sortedEvents = sortedEventsList(eventsList);
 
-  useEffect(() => {
-    document.title = "Friends of 16";
-
-    const metaDescription = document.createElement("meta");
-    metaDescription.property = "og:description";
-    metaDescription.content =
-      "16/16 is a serene space for intimate experiences designed to attract and serve creatives";
-    document.head.appendChild(metaDescription);
-
-    const ogType = document.createElement("meta");
-    ogType.property = "og:type";
-    ogType.content = "website";
-    document.head.appendChild(ogType);
-
-    const ogUrl = document.createElement("meta");
-    ogUrl.property = "og:url";
-    ogUrl.content = "https://f16-demo.vercel.app/";
-    document.head.appendChild(ogUrl);
-
-    const ogTitle = document.createElement("meta");
-    ogTitle.property = "og:title";
-    ogTitle.content = "Friends of 16";
-    document.head.appendChild(ogTitle);
-
-    const ogImage = document.createElement("meta");
-    ogImage.property = "og:image";
-    ogImage.content = "https://f16-demo.vercel.app/SEOImage.png";
-    document.head.appendChild(ogImage);
-
-    const twitterCard = document.createElement("meta");
-    twitterCard.name = "twitter:card";
-    twitterCard.content = "summary_large_image";
-    document.head.appendChild(twitterCard);
-
-    const twitterUrl = document.createElement("meta");
-    twitterUrl.name = "twitter:url";
-    twitterUrl.content = "https://f16-demo.vercel.app/";
-    document.head.appendChild(twitterUrl);
-
-    const twitterTitle = document.createElement("meta");
-    twitterTitle.name = "twitter:title";
-    twitterTitle.content = "Friends of 16";
-    document.head.appendChild(twitterTitle);
-
-    const twitterDescription = document.createElement("meta");
-    twitterDescription.name = "twitter:description";
-    twitterDescription.content =
-      "16/16 is a serene space for intimate experiences designed to attract and serve creatives";
-    document.head.appendChild(twitterDescription);
-
-    const twitterImage = document.createElement("meta");
-    twitterImage.name = "twitter:image";
-    twitterImage.content = "https://f16-demo.vercel.app/SEOImage.png";
-    document.head.appendChild(twitterImage);
-
-    // Cleanup function
-    return () => {
-      document.head.removeChild(metaDescription);
-      document.head.removeChild(ogType);
-      document.head.removeChild(ogUrl);
-      document.head.removeChild(ogTitle);
-      document.head.removeChild(ogImage);
-      document.head.removeChild(twitterCard);
-      document.head.removeChild(twitterUrl);
-      document.head.removeChild(twitterTitle);
-      document.head.removeChild(twitterDescription);
-      document.head.removeChild(twitterImage);
-    };
-  }, []);
   return (
     <main className="w-full h-full py-[10px] lg:py-[20px]">
-      {/* <Head>
+      {/* <head>
         <title>Friends of 16</title>
         <link rel="icon" type="image/svg" href="Logo.svg" sizes="16x16" />
         <meta name="title" content="Friends of 16" />
@@ -207,7 +138,7 @@ export default function Home() {
           property="twitter:image"
           content="https://f16-demo.vercel.app/SEOImage.png"
         />
-      </Head> */}
+      </head> */}
       <div className="w-full fixed top-0 flex justify-between items-center py-[15px] lg:pb-0 lg:pt-[30px] px-[24px] lg:px-[96px] bg-white z-50">
         <p className="font-bold text-[18px] lg:text-[24px]">16/16</p>
         <Link href="/menu" className="font-normal text-[18px] lg:text-[24px]">
