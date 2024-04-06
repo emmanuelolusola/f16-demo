@@ -11,6 +11,7 @@ import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 import { bookings, getEvent } from "@/queries/auth";
 import { usePaystackPayment } from "react-paystack";
+import MenuLayout from "./layout";
 
 export default function Event(props) {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -25,11 +26,14 @@ export default function Event(props) {
 
   const navigate = useRouter();
 
-  const [email, setEmail] = useState(localStorage.getItem("email") ?? "");
+  const getValueFromLocalStorage = (key) => {
+    return typeof window !== "undefined" ? localStorage.getItem(key) ?? "" : "";
+  };
 
-  const [name, setName] = useState(localStorage.getItem("name") ?? "");
-
-  const [phone, setPhone] = useState(localStorage.getItem("phone") ?? "");
+  // Inside your component
+  const [email, setEmail] = useState(getValueFromLocalStorage("email"));
+  const [name, setName] = useState(getValueFromLocalStorage("name"));
+  const [phone, setPhone] = useState(getValueFromLocalStorage("phone"));
 
   const [isEmailValid, setIsEmailValid] = useState(false);
 
@@ -39,30 +43,31 @@ export default function Event(props) {
 
   const [loading, setLoading] = useState(false);
 
-  const [rememberMe, setRememberMe] = useState(
-    localStorage.getItem("rememberMe") === "true"
-  );
+  const getRememberMeFromLocalStorage = () => {
+    return typeof window !== "undefined"
+      ? localStorage.getItem("rememberMe") === "true"
+      : false;
+  };
+
+  // Inside your component
+  const [rememberMe, setRememberMe] = useState(getRememberMeFromLocalStorage());
 
   const location = useRouter();
 
-  const share = useCallback(
-    (title, url) => {
-      try {
-        if (navigator.canShare) {
-          navigator.share({
-            title: title || "Default Title",
-            url: url || "https://example.com",
-          });
-        } else {
-          console.error("Web Share API not supported");
-        }
-      } catch (error) {
-        console.log(error);
+  const share = useCallback((title, url) => {
+    try {
+      if (typeof window !== "undefined" && window.navigator.canShare) {
+        window.navigator.share({
+          title: title || "Default Title",
+          url: url || "https://example.com",
+        });
+      } else {
+        console.error("Web Share API not supported");
       }
-    },
-    [navigator.canShare]
-  );
-
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
   const dates = useMemo(() => {
     if (!event || event.StartDate === event.EndDate) return null;
     let start = moment(event.StartDate);
@@ -193,9 +198,18 @@ export default function Event(props) {
 
   const handleButtonClick = async () => {
     if (rememberMe) {
-      localStorage.setItem("email", email);
-      localStorage.setItem("name", name);
-      localStorage.setItem("phone", phone);
+      if (typeof window !== "undefined") {
+        // Code that uses localStorage
+        localStorage.setItem("email", email);
+      }
+      if (typeof window !== "undefined") {
+        // Code that uses localStorage
+        localStorage.setItem("name", name);
+      }
+      if (typeof window !== "undefined") {
+        // Code that uses localStorage
+        localStorage.setItem("phone", phone);
+      }
     } else {
       localStorage.removeItem("email");
       localStorage.removeItem("name");
