@@ -11,7 +11,6 @@ import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 import { bookings, getEvent } from "@/queries/auth";
 import { usePaystackPayment } from "react-paystack";
-import MenuLayout from "./layout";
 
 export default function Event(props) {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -224,6 +223,26 @@ export default function Event(props) {
   };
   return (
     <div className="w-full h-full py-[10px] lg:py-[20px]">
+      <title>{event.Name}</title>
+      <meta name="title" content={event.Name} />
+      <meta name="description" content={event.About} />
+      <meta property="og:type" content="website" />
+      <meta
+        property="og:url"
+        content={`https://f16-demo.vercel.app/event/${props.params.id}`}
+      />
+      <meta property="og:title" content={event.Name} />
+      <meta property="og:description" content={event.About} />
+      <meta property="og:image" content={event.Poster[0].url} />
+
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta
+        property="twitter:url"
+        content={`https://f16-demo.vercel.app/event/${props.params.id}`}
+      />
+      <meta property="twitter:title" content={event.Name} />
+      <meta property="twitter:description" content={event.About} />
+      <meta property="twitter:image" content={event.Poster[0].url} />
       <div className="bg-white fixed justify w-full top-0 px-[24px] lg:px-[96px] pt-[10px] lg:pt-[30px] z-10">
         <div className="w-full flex justify-between items-center mt-[15px]">
           <Link className="font-normal text-[18px] lg:text-[24px]" href="/">
