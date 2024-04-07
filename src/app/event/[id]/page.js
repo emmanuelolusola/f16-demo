@@ -226,7 +226,7 @@ export default function Event(props) {
     <div className="w-full h-full py-[10px] lg:py-[20px]">
       <title>{event.Name}</title>
       <meta name="title" content={event.Name} />
-      <meta name="description" content={event.Address} />
+      {/* <meta name="description" content={event.Address} />
       <meta property="og:type" content="website" />
       <meta
         property="og:url"
@@ -234,24 +234,19 @@ export default function Event(props) {
       />
       <meta property="og:title" content={event.Name} />
       <meta property="og:description" content={event.Address} />
-      <meta
-        property="og:image"
-        content={`https://f16-demo.vercel.app/event/${props.params.id}/_next/image?url=${event.Poster[0].url}&w=1200`}
-      />
+      <meta property="og:image" content={event.Poster[0].url} />
+      <meta property="og:image:secure_url" content={event.Poster[0].url} /> */}
       {/* <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="628" /> */}
 
-      <meta property="twitter:card" content="summary_large_image" />
+      {/* <meta property="twitter:card" content="summary_large_image" />
       <meta
         property="twitter:url"
         content={`https://f16-demo.vercel.app/event/${props.params.id}`}
       />
       <meta property="twitter:title" content={event.Name} />
       <meta property="twitter:description" content={event.Address} />
-      <meta
-        property="twitter:image"
-        content={`https://f16-demo.vercel.app/event/${props.params.id}/_next/image?url=${event.Poster[0].url}&w=1200`}
-      />
+      <meta property="twitter:image" content={event.Poster[0].url} /> */}
       {/* <meta property="twitter:image:width" content="1200" />
       <meta property="twitter:image:height" content="628" /> */}
 
