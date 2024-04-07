@@ -236,7 +236,7 @@ export default function Event(props) {
       <meta property="og:description" content={event.Address} />
       <meta
         property="og:image"
-        content={`/_next/image?url=${event.Poster[0].url}&w=1200`}
+        content={`https://f16-demo.vercel.app/event/${props.params.id}/_next/image?url=${event.Poster[0].url}&w=1200`}
       />
       {/* <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="628" /> */}
@@ -250,7 +250,7 @@ export default function Event(props) {
       <meta property="twitter:description" content={event.Address} />
       <meta
         property="twitter:image"
-        content={`/_next/image?url=${event.Poster[0].url}&w=1200`}
+        content={`https://f16-demo.vercel.app/event/${props.params.id}/_next/image?url=${event.Poster[0].url}&w=1200`}
       />
       {/* <meta property="twitter:image:width" content="1200" />
       <meta property="twitter:image:height" content="628" /> */}
