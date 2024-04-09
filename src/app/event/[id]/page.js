@@ -225,19 +225,20 @@ export default function Event(props) {
   };
   return (
     <div className="w-full h-full py-[10px] lg:py-[20px]">
-      <title>Event</title>
-      <meta name="title" content="Event" />
-      <meta name="description" content="Book this event" />
+      <title>{event?.Name}</title>
+      <meta name="title" content={event?.Name} />
+      <meta name="description" content={event?.Address} />
       <meta property="og:type" content="website" />
       <meta
         property="og:url"
         content={`https://f16-demo.vercel.app/event/${props.params.id}`}
       />
-      <meta property="og:title" content="Event" />
-      <meta property="og:description" content="Book this event" />
+
+      <meta property="og:title" content={event?.Name} />
+      <meta property="og:description" content={event?.Address} />
       <meta
         property="og:image"
-        content="https://f16-demo.vercel.app/about.jpg"
+        content={`${event?.Poster?.[0]?.url}?width=1200?height=630`}
       />
 
       <meta property="twitter:card" content="summary_large_image" />
@@ -245,11 +246,11 @@ export default function Event(props) {
         property="twitter:url"
         content={`https://f16-demo.vercel.app/event/${props.params.id}`}
       />
-      <meta property="twitter:title" content="Event" />
-      <meta property="twitter:description" content="Book this event" />
+      <meta property="twitter:title" content={event?.Name} />
+      <meta property="twitter:description" content={event?.Address} />
       <meta
         property="twitter:image"
-        content="https://f16-demo.vercel.app/about.jpg"
+        content={`${event?.Poster?.[0]?.url}?width=1200?height=630`}
       />
       <div className="bg-white fixed justify w-full top-0 px-[24px] lg:px-[96px] pt-[10px] lg:pt-[30px] z-10">
         <div className="w-full flex justify-between items-center mt-[15px]">
@@ -276,6 +277,7 @@ export default function Event(props) {
             width={900}
             height={400}
             priority
+            unoptimized
           />
         ) : null}
         <div className="flex flex-col gap-4">
