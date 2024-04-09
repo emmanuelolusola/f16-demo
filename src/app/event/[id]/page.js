@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { CldOgImage } from "next-cloudinary";
+import { AdvancedImage } from "@cloudinary/react";
+import { fill } from "@cloudinary/url-gen/actions/resize";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useMemo, useState, useCallback } from "react";
 import moment from "moment";
@@ -224,32 +225,32 @@ export default function Event(props) {
   };
   return (
     <div className="w-full h-full py-[10px] lg:py-[20px]">
-      <title>{event.Name}</title>
-      <meta name="title" content={event.Name} />
-      {/* <meta name="description" content={event.Address} />
+      <title>Event</title>
+      <meta name="title" content="Event" />
+      <meta name="description" content="Book this event" />
       <meta property="og:type" content="website" />
       <meta
         property="og:url"
         content={`https://f16-demo.vercel.app/event/${props.params.id}`}
       />
-      <meta property="og:title" content={event.Name} />
-      <meta property="og:description" content={event.Address} />
-      <meta property="og:image" content={event.Poster[0].url} />
-      <meta property="og:image:secure_url" content={event.Poster[0].url} /> */}
-      {/* <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="628" /> */}
+      <meta property="og:title" content="Event" />
+      <meta property="og:description" content="Book this event" />
+      <meta
+        property="og:image"
+        content="https://f16-demo.vercel.app/about.jpg"
+      />
 
-      {/* <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:card" content="summary_large_image" />
       <meta
         property="twitter:url"
         content={`https://f16-demo.vercel.app/event/${props.params.id}`}
       />
-      <meta property="twitter:title" content={event.Name} />
-      <meta property="twitter:description" content={event.Address} />
-      <meta property="twitter:image" content={event.Poster[0].url} /> */}
-      {/* <meta property="twitter:image:width" content="1200" />
-      <meta property="twitter:image:height" content="628" /> */}
-
+      <meta property="twitter:title" content="Event" />
+      <meta property="twitter:description" content="Book this event" />
+      <meta
+        property="twitter:image"
+        content="https://f16-demo.vercel.app/about.jpg"
+      />
       <div className="bg-white fixed justify w-full top-0 px-[24px] lg:px-[96px] pt-[10px] lg:pt-[30px] z-10">
         <div className="w-full flex justify-between items-center mt-[15px]">
           <Link className="font-normal text-[18px] lg:text-[24px]" href="/">
