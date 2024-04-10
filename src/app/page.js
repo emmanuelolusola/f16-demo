@@ -149,7 +149,7 @@ export default function Home() {
           width={100}
           height={100}
           priority={true}
-          unoptimized={false}
+          unoptimized
           className="w-[100px] lg:w-[150px]"
         />
         <div className="flex flex-col items-center gap-10 lg:gap-20">

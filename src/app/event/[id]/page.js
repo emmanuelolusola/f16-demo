@@ -1,8 +1,6 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { AdvancedImage } from "@cloudinary/react";
-import { fill } from "@cloudinary/url-gen/actions/resize";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useMemo, useState, useCallback } from "react";
 import moment from "moment";
@@ -16,6 +14,7 @@ import { usePaystackPayment } from "react-paystack";
 
 export default function Event(props) {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [dataFetched, setDataFetched] = useState(false);
 
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -31,7 +30,6 @@ export default function Event(props) {
     return typeof window !== "undefined" ? localStorage.getItem(key) ?? "" : "";
   };
 
-  // Inside your component
   const [email, setEmail] = useState(getValueFromLocalStorage("email"));
   const [name, setName] = useState(getValueFromLocalStorage("name"));
   const [phone, setPhone] = useState(getValueFromLocalStorage("phone"));
@@ -50,7 +48,6 @@ export default function Event(props) {
       : false;
   };
 
-  // Inside your component
   const [rememberMe, setRememberMe] = useState(getRememberMeFromLocalStorage());
 
   const location = useRouter();
@@ -124,18 +121,21 @@ export default function Event(props) {
   };
 
   useEffect(() => {
-    const fetchData = async (data) => {
-      try {
-        const res = await getEvent(props.params.id);
-        setEvent(res);
-        console.log(res);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
+    if (!dataFetched) {
+      fetchData();
+    }
+  }, [dataFetched]);
 
+  const fetchData = async () => {
+    try {
+      const res = await getEvent(props.params.id);
+      setEvent(res);
+      console.log(res);
+      setDataFetched(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     const event = location.state;
     setEvent(event);
@@ -200,15 +200,12 @@ export default function Event(props) {
   const handleButtonClick = async () => {
     if (rememberMe) {
       if (typeof window !== "undefined") {
-        // Code that uses localStorage
         localStorage.setItem("email", email);
       }
       if (typeof window !== "undefined") {
-        // Code that uses localStorage
         localStorage.setItem("name", name);
       }
       if (typeof window !== "undefined") {
-        // Code that uses localStorage
         localStorage.setItem("phone", phone);
       }
     } else {
@@ -225,33 +222,27 @@ export default function Event(props) {
   };
   return (
     <div className="w-full h-full py-[10px] lg:py-[20px]">
-      <title>{event?.Name}</title>
-      <meta name="title" content={event?.Name} />
-      <meta name="description" content={event?.Address} />
+      <title>{event.Name}</title>
+      <meta name="title" content={event.Name} />
+      <meta name="description" content={event.Address} />
       <meta property="og:type" content="website" />
       <meta
         property="og:url"
-        content={`https://f16-demo.vercel.app/event/${props.params.id}`}
+        content={`https://f16-demo.vercel.app/event/${event.ID}`}
       />
-
-      <meta property="og:title" content={event?.Name} />
-      <meta property="og:description" content={event?.Address} />
-      <meta
-        property="og:image"
-        content={`${event?.Poster?.[0]?.url}?width=1200?height=630`}
-      />
+      <meta property="og:title" content={event.Name} />
+      <meta property="og:description" content={event.Address} />
+      <meta property="og:image" content={event.Poster[0].url} />
 
       <meta property="twitter:card" content="summary_large_image" />
       <meta
         property="twitter:url"
-        content={`https://f16-demo.vercel.app/event/${props.params.id}`}
+        content={`https://f16-demo.vercel.app/event/${event.ID}`}
       />
-      <meta property="twitter:title" content={event?.Name} />
-      <meta property="twitter:description" content={event?.Address} />
-      <meta
-        property="twitter:image"
-        content={`${event?.Poster?.[0]?.url}?width=1200?height=630`}
-      />
+      <meta property="twitter:title" content={event.Name} />
+      <meta property="twitter:description" content={event.Address} />
+      <meta property="twitter:image" content={event.Poster[0].url} />
+
       <div className="bg-white fixed justify w-full top-0 px-[24px] lg:px-[96px] pt-[10px] lg:pt-[30px] z-10">
         <div className="w-full flex justify-between items-center mt-[15px]">
           <Link className="font-normal text-[18px] lg:text-[24px]" href="/">
