@@ -22,7 +22,7 @@ export default function Event(props) {
 
   const currentMoment = moment(moment().format("YYYY-MM-DD"));
 
-  const [event, setEvent] = useState();
+  const [event, setEvent] = useState(props.event);
 
   const navigate = useRouter();
 
