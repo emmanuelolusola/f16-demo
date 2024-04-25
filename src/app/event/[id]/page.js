@@ -269,14 +269,14 @@ export default function Event(props) {
           />
         ) : null}
         <div className="flex flex-col gap-4">
-          {currentMoment.isAfter(event.EndDate) ? (
+          {currentMoment.isSameOrBefore(event.EndDate) ? (
             <button
               className="w-full h-[66px] bg-[#0a0a0a] text-[#ffffff] text-[18px] lg:text-[24px] font-bold"
               onClick={toggleDrawer}
             >
               {event?.Price > 0 ? "Buy Ticket" : "Get Ticket"}
             </button>
-          ) : currentMoment.isSameOrBefore(event.EndDate) ? (
+          ) : currentMoment.isAfter(event.EndDate) ? (
             <button className="link-no-highlight w-full h-[66px] bg-[#e1e1e1] text-[#FF3131] text-[18px] lg:text-[24px] font-bold">
               Closed
             </button>
@@ -286,7 +286,8 @@ export default function Event(props) {
             </button>
           )}
           {/* share */}
-          {event?.RSVP === true && currentMoment.isAfter(event.EndDate) ? (
+          {event?.RSVP === true &&
+          currentMoment.isSameOrBefore(event.EndDate) ? (
             <button
               className="w-full h-[64px] border border-[#0a0a0a] text-[#0a0a0a] text-[18px] lg:text-[24px] font-bold"
               onClick={() => share(event.Name, event.URL)}

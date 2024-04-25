@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { events } from "@/queries/auth";
 import moment from "moment";
 
@@ -12,6 +12,17 @@ export default function Home() {
   const [currentTitle, setCurrentTitle] = useState("");
 
   const currentMoment = moment(moment().format("YYYY-MM-DD"));
+
+  function getDefaultDate() {
+    const event = eventsList[0];
+    if (event) {
+      const StartDate = getDate(event.StartDate);
+      const EndDate = getDate(event.EndDate);
+      if (StartDate === EndDate) {
+        setCurrentTitle(StartDate);
+      } else setCurrentTitle(`${StartDate} - ${EndDate}`);
+    }
+  }
 
   useEffect(() => {
     const fetchData = async (data) => {
@@ -29,17 +40,6 @@ export default function Home() {
     fetchData();
   }, []);
 
-  function getDefaultDate() {
-    const event = eventsList[0];
-    if (event) {
-      const StartDate = getDate(event.StartDate);
-      const EndDate = getDate(event.EndDate);
-      if (StartDate === EndDate) {
-        setCurrentTitle(StartDate);
-      } else setCurrentTitle(`${StartDate} - ${EndDate}`);
-    }
-  }
-
   useEffect(() => {
     getDefaultDate();
   }, [eventsList]);
@@ -48,18 +48,11 @@ export default function Home() {
     const handleScroll = () => {
       const elements = eventsList.map((item, index) => {
         const element = document.getElementById(item.ID);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return {
-            index,
-            inView: rect.top >= 0 && rect.bottom <= window.innerHeight,
-          };
-        } else {
-          return {
-            index,
-            inView: false,
-          };
-        }
+        const rect = element.getBoundingClientRect();
+        return {
+          index,
+          inView: rect.top >= 0 && rect.bottom <= window.innerHeight,
+        };
       });
 
       const inViewElement = elements.find((item) => item.inView);
@@ -81,27 +74,35 @@ export default function Home() {
     };
   }, [eventsList]);
 
-  function sortedEventsList(events) {
-    const currentTimestamp = Date.now();
+  const sortedEventsList = eventsList.sort((a, b) => {
+    const aStartDate = new Date(a.StartDate);
+    const bStartDate = new Date(b.StartDate);
+    const aEndDate = new Date(a.EndDate);
+    const bEndDate = new Date(b.EndDate);
 
-    function compareStartDate(eventA, eventB) {
-      const startDateA = new Date(eventA.startDate);
-      const startDateB = new Date(eventB.startDate);
+    if (currentMoment.isSame(aStartDate, "day")) return -1;
+    if (currentMoment.isSame(bStartDate, "day")) return 1;
 
-      if (startDateA < currentTimestamp) {
-        return 1;
-      } else if (startDateB < currentTimestamp) {
-        return -1;
-      } else {
-        return startDateA - startDateB;
-      }
+    if (
+      currentMoment.isBefore(aStartDate) &&
+      currentMoment.isBefore(bStartDate)
+    ) {
+      return aStartDate - bStartDate;
     }
 
-    const sortedEvents = events.sort(compareStartDate);
-    return sortedEvents;
-  }
+    if (
+      currentMoment.isBefore(aStartDate) &&
+      currentMoment.isBetween(aStartDate, aEndDate)
+    )
+      return -1;
+    if (
+      currentMoment.isBefore(bStartDate) &&
+      currentMoment.isBetween(bStartDate, bEndDate)
+    )
+      return 1;
 
-  const sortedEvents = sortedEventsList(eventsList);
+    return aStartDate - bStartDate;
+  });
 
   return (
     <main className="w-full h-full py-[10px] lg:py-[20px]">
@@ -191,7 +192,7 @@ export default function Home() {
           </div>
         </div>
       ) : (
-        sortedEvents.map((event, index) => (
+        sortedEventsList.map((event, index) => (
           <div
             className="mt-[30px] lg:mt-[60px] lg:w-[600px] px-[24px] lg:px-0 flex flex-col gap-4 lg:gap-4 pb-[20px] lg:pb-0 lg:mx-auto"
             key={index}
@@ -201,20 +202,19 @@ export default function Home() {
             <img
               src={event.Poster[0].url}
               alt=""
-              style={{ position: "relative" }}
-              fill="true"
-              priority="true"
+              onClick={() => navigate(`/event/${event.ID}`)}
             />
 
             {currentMoment.isSameOrBefore(event.EndDate)}
-            {event.RSVP === true && currentMoment.isAfter(event.EndDate) ? (
+            {event.RSVP === true &&
+            currentMoment.isSameOrBefore(event.EndDate) ? (
               <Link
                 href={`/event/${event.ID}`}
                 className="w-full h-[66px] border border-[#0a0a0a] bg-white text-[#0A0A0A] text-[18px] lg:text-[24px] font-bold flex justify-center items-center"
               >
                 RSVP
               </Link>
-            ) : currentMoment.isSameOrBefore(event.EndDate) ? (
+            ) : currentMoment.isAfter(event.EndDate) ? (
               <div className="w-full h-[66px] border border-[#FF3131] text-[#FF3131] text-[18px] lg:text-[24px] font-bold flex justify-center items-center">
                 Closed
               </div>
