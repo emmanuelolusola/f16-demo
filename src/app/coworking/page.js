@@ -129,6 +129,40 @@ export default function Coworking() {
 
   return (
     <div className="w-full h-[100dvh] lg:h-full py-[10px] lg:py-[20px]">
+      <link rel="icon" type="image/svg" href="Logo.svg" sizes="16x16" />
+
+      <title>Co-working at 16/16</title>
+      <meta name="title" content="Co-working at 16/16" />
+      <meta
+        name="description"
+        content="16/16 is a serene space for intimate experiences designed to attract and serve creatives, providing them a safe haven to unwind, network and be productive whilst enjoying exceptional amenities tailored exclusively for our network of Friends"
+      />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://f16-demo.vercel.app/coworking" />
+      <meta property="og:title" content="Co-working at 16/16" />
+      <meta
+        property="og:description"
+        content="16/16 is a serene space for intimate experiences designed to attract and serve creatives, providing them a safe haven to unwind, network and be productive whilst enjoying exceptional amenities tailored exclusively for our network of Friends"
+      />
+      <meta
+        property="og:image"
+        content="https://f16-demo.vercel.app/SEOImage.png"
+      />
+
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta
+        property="twitter:url"
+        content="https://f16-demo.vercel.app/coworking"
+      />
+      <meta property="twitter:title" content="Co-working at 16/16" />
+      <meta
+        property="twitter:description"
+        content="16/16 is a serene space for intimate experiences designed to attract and serve creatives, providing them a safe haven to unwind, network and be productive whilst enjoying exceptional amenities tailored exclusively for our network of Friends"
+      />
+      <meta
+        property="twitter:image"
+        content="https://f16-demo.vercel.app/SEOImage.png"
+      />
       <div className="w-full fixed top-0 flex justify-between items-center py-[15px] lg:pb-0 lg:pt-[30px] px-[24px] lg:px-[96px] bg-white z-10">
         <p className="font-bold text-[18px] lg:text-[24px]">16/16</p>
         <Link

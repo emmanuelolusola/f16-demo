@@ -22,7 +22,7 @@ export default function Event(props) {
 
   const currentMoment = moment(moment().format("YYYY-MM-DD"));
 
-  const [event, setEvent] = useState(props.event);
+  const [event, setEvent] = useState();
 
   const navigate = useRouter();
 
@@ -226,10 +226,7 @@ export default function Event(props) {
       <meta name="title" content={event.Name} />
       <meta name="description" content={event.Address} />
       <meta property="og:type" content="website" />
-      <meta
-        property="og:url"
-        content={`https://f16-demo.vercel.app/event/${event.ID}`}
-      />
+      <meta property="og:url" content={props.params.id} />
       <meta property="og:title" content={event.Name} />
       <meta property="og:description" content={event.Address} />
       <meta property="og:image" content={event.Poster[0].url} />
